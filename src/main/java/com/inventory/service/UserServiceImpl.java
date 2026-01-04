@@ -2,6 +2,7 @@ package com.inventory.service;
 
 import com.inventory.entity.AuditAction;
 import com.inventory.entity.User;
+import com.inventory.exception.ResourceNotFoundException;
 import com.inventory.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(Long id, User updatedUser, String performedBy) {
         User existing = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         existing.setUsername(updatedUser.getUsername());
         existing.setRole(updatedUser.getRole());
         existing.setUpdatedAt(updatedUser.getUpdatedAt());

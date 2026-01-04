@@ -2,6 +2,7 @@ package com.inventory.service;
 
 import com.inventory.entity.AuditAction;
 import com.inventory.entity.Product;
+import com.inventory.exception.ResourceNotFoundException;
 import com.inventory.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Long id, Product product, String performedBy) {
         Product existing = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + id));
         existing.setName(product.getName());
         existing.setPrice(product.getPrice());
         existing.setUpdatedAt(product.getUpdatedAt());
