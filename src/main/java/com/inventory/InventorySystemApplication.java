@@ -1,6 +1,6 @@
 package com.inventory;
 
-import com.inventory.entity.Role;
+import com.inventory.enums.Enums.Role;
 import com.inventory.entity.User;
 import com.inventory.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;

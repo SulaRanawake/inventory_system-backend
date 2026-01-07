@@ -1,5 +1,6 @@
 package com.inventory.entity;
 
+import com.inventory.enums.Enums.AuditAction;
 import jakarta.persistence.*;
 import lombok.*;
 

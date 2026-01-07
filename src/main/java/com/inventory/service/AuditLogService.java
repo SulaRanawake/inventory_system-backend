@@ -1,6 +1,6 @@
 package com.inventory.service;
 
-import com.inventory.entity.AuditAction;
+import com.inventory.enums.Enums.AuditAction;
 import com.inventory.entity.AuditLog;
 import com.inventory.repository.AuditLogRepository;
 import lombok.RequiredArgsConstructor;
