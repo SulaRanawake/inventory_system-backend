@@ -1,5 +1,6 @@
 package com.inventory.entity;
 
+import com.inventory.enums.Enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;

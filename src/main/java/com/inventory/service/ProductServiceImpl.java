@@ -1,9 +1,11 @@
 package com.inventory.service;
 
-import com.inventory.entity.AuditAction;
+import com.inventory.enums.Enums.AuditAction;
 import com.inventory.entity.Product;
+import com.inventory.entity.User;
 import com.inventory.exception.ResourceNotFoundException;
 import com.inventory.repository.ProductRepository;
+import com.inventory.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,15 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final AuditLogService auditLogService;
+    private final UserRepository userRepository;
 
     @Override
     public Product createProduct(Product product, String performedBy) {
+//        temp until JWT
+        User currentUser = userRepository.findById(1L)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        product.setCreatedBy(currentUser);
+//        temp
         Product saved = productRepository.save(product);
         auditLogService.log(AuditAction.CREATE, "Product", saved.getId(), performedBy, "Created product: " + saved.getName());
         return saved;

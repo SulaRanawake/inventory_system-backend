@@ -1,6 +1,6 @@
 package com.inventory.service;
 
-import com.inventory.entity.AuditAction;
+import com.inventory.enums.Enums.AuditAction;
 import com.inventory.entity.Inventory;
 import com.inventory.exception.ResourceNotFoundException;
 import com.inventory.repository.InventoryRepository;
