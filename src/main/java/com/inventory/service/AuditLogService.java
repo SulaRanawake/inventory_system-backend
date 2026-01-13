@@ -1,5 +1,6 @@
 package com.inventory.service;
 
+import com.inventory.entity.User;
 import com.inventory.enums.Enums.AuditAction;
 import com.inventory.entity.AuditLog;
 import com.inventory.repository.AuditLogRepository;
@@ -16,7 +17,7 @@ public class AuditLogService {
             AuditAction action,
             String entityName,
             Long entityId,
-            String performedBy,
+            User performedBy,
             String description
     ) {
         AuditLog log = new AuditLog();
