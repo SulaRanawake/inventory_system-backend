@@ -9,6 +9,7 @@ public class ProductMapper {
         Product product = new Product();
         product.setName(dto.getName());
         product.setPrice(dto.getPrice());
+        product.setDescription(dto.getDescription());
         return product;
     }
 
@@ -16,7 +17,9 @@ public class ProductMapper {
         return ProductResponseDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
+                .description(product.getDescription())
                 .price(product.getPrice())
+                .status(product.getStatus())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
                 .build();
