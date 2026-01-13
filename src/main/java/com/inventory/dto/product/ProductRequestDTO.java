@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 @Setter
 public class ProductRequestDTO {
 
-//    to create and update
-
     @NotBlank
     @Size(min = 3, max = 100)
     private String name;
@@ -22,4 +20,6 @@ public class ProductRequestDTO {
     @NotNull
     @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal price;
+
+    private String description;
 }
