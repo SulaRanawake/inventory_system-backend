@@ -1,19 +1,15 @@
 package com.inventory.service;
 
-import com.inventory.entity.Inventory;
+import com.inventory.dto.inventory.InventoryResponseDTO;
+import com.inventory.dto.inventory.UpdateInventoryRequestDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface InventoryService {
 
-    Inventory createInventory(Inventory inventory, String performedBy);
+    InventoryResponseDTO updateInventory(Long productId, UpdateInventoryRequestDTO dto);
 
-    Inventory updateInventory(Long id, Inventory inventory, String performedBy);
+    InventoryResponseDTO getInventoryByProductId(Long productId);
 
-    void deleteInventory(Long id, String performedBy);
-
-    Optional<Inventory> getInventoryById(Long id);
-
-    List<Inventory> getAllInventory();
+    List<InventoryResponseDTO> getAllInventory();
 }
