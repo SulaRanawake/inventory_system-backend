@@ -3,6 +3,7 @@ package com.inventory;
 import com.inventory.enums.Enums.Role;
 import com.inventory.entity.User;
 import com.inventory.repository.UserRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,13 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class InventorySystemApplication {
+
+	static {
+		Dotenv dotenv = Dotenv.load();
+		dotenv.entries().forEach(e ->
+				System.setProperty(e.getKey(), e.getValue())
+		);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(InventorySystemApplication.class, args);
