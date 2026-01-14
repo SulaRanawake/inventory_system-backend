@@ -2,11 +2,13 @@ package com.inventory.service;
 
 import com.inventory.dto.product.ProductRequestDTO;
 import com.inventory.dto.product.ProductResponseDTO;
+import com.inventory.entity.Inventory;
 import com.inventory.enums.Enums.AuditAction;
 import com.inventory.entity.Product;
 import com.inventory.entity.User;
 import com.inventory.exception.ResourceNotFoundException;
 import com.inventory.mapper.ProductMapper;
+import com.inventory.repository.InventoryRepository;
 import com.inventory.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final AuditLogService auditLogService;
+    private final InventoryRepository inventoryRepository;
 
     @Override
     public ProductResponseDTO createProduct(ProductRequestDTO dto) {
@@ -27,6 +30,12 @@ public class ProductServiceImpl implements ProductService {
         product.setCreatedBy(getCurrentUserId());
 
         Product saved = productRepository.save(product);
+
+        Inventory inventory = new Inventory();
+        inventory.setProduct(product);
+        inventory.setQuantity(0);
+        inventory.setLastUpdated(LocalDateTime.now());
+        inventoryRepository.save(inventory);
 
         auditLogService.log(AuditAction.CREATE, "Product", saved.getId(), getCurrentUserId(), "Created product: " + saved.getName());
 
