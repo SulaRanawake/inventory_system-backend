@@ -1,19 +1,20 @@
 package com.inventory.service;
 
-import com.inventory.entity.User;
+import com.inventory.dto.user.CreateUserRequestDto;
+import com.inventory.dto.user.UpdateUserRequestDto;
+import com.inventory.dto.user.UserResponseDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
-    User createUser(User user, String performedBy);
+    UserResponseDto createUser(CreateUserRequestDto dto);
 
-    User updateUser(Long id, User updatedUser, String performedBy);
+    UserResponseDto updateUser(Long id, UpdateUserRequestDto dto);
 
-    void deleteUser(Long id, String performedBy);
+    void deleteUser(Long id);
 
-    Optional<User> getUserById(Long id);
+    UserResponseDto getUserById(Long id);
 
-    List<User> getAllUsers();
+    List<UserResponseDto> getAllUsers();
 }

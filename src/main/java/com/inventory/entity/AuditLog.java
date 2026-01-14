@@ -28,8 +28,9 @@ public class AuditLog {
     @Column(name = "entity_id")
     private Long entityId;
 
-    @Column(name = "performed_by", nullable = false, length = 100)
-    private String performedBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "performed_by")
+    private User performedBy;
 
     @Column
     private String description;
