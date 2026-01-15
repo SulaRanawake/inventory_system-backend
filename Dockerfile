@@ -14,4 +14,4 @@ RUN ./mvnw clean package -DskipTests -Dstyle.color=never
 EXPOSE 8080
 
 # Run the jar
-CMD ["java", "-jar", "target/*.jar"]
+CMD java -jar target/*.jar
