@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Bean;
 public class InventorySystemApplication {
 
 	static {
-		Dotenv dotenv = Dotenv.load();
+		Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+
 		dotenv.entries().forEach(e ->
 				System.setProperty(e.getKey(), e.getValue())
 		);
@@ -36,5 +37,4 @@ public class InventorySystemApplication {
 			}
 		};
 	}
-
 }
